@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Flight Data Homepage</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{{ url_for('static', filename='../static/images/favicon.ico') }}" />
+    <!-- <a href="https://www.flaticon.com/free-icons/delay" title="delay icons">Delay icons created by Freepik - Flaticon</a>  -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/index.css') }}">
+    <!-- D3 library -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <!-- Chart.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Include Chart.js from CDN -->
+    <!-- Plotly library -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        line-height: 1.4;
+        color: #333;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background: url('../static/images/homepage_background.png') no-repeat center center fixed;
+        background-size: cover;
+    }
+</style>   
+<body>
+<div class="container">
+    <h1>Flight Data Homepage</h1>
+
+    <div class="routes-container">
+        <h2>Available Routes</h2>
+        <ul id="routeList">
+            {% for route in available_routes %}
+            <li>
+                <button class="route-button" onclick="location.href='{{ route.url }}'">{{ route.name }}</button>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="container">
+        <h2>Page Previews</h2>
+        <div class="preview-container">
+            <div class="preview-item">
+                <a href="{{ url_for('get_flight_predict') }}">
+                <img src="../static/images/preview1.png" alt="Preview 1"></a>
+                <a href="{{ url_for('get_flight_predict') }}">
+                    <h3>Flight Dashboard</h3>
+                </a>
+                <p>Predictive flight delay dashboard that analyzes user inputs to predict the chance of a delay, outputting a probability of delay with a trip map and real-time weather forecasts.</p>
+            </div>
+            <div class="preview-item">
+                <a href="{{ url_for('show_visuals') }}">
+                <img src="../static/images/preview2.png" alt="Preview 2"></a>
+                <a href="{{ url_for('show_visuals') }}">
+                    <h3>Visualize</h3>
+                </a>
+                <p>Interactive and static visualizations produced with JavaScript to analyze historical US flight delay patterns from available 2019 data, providing visual insight for feature selection.</p>
+            </div>
+            <div class="preview-item">
+                <a href="{{ url_for('get_data') }}">
+                <img src="../static/images/preview3.png" alt="Preview 3"></a>
+                <a href="{{ url_for('get_data') }}">
+                    <h3>Raw Data</h3>
+                </a>
+                <p>Visit different data endpoints used to power predictions and visuals. <strong> Select:</strong>  Sampled data, weather forecasts, or view external data powering predictions and visuals.</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- GitHub Repository Button -->
+<div class="github-button-container">
+    <a href="https://github.com/maddiebowman/predictive_flight_delays" target="_blank" class="github-button">
+        <img src="../static/images/github_logo.png" alt="GitHub Logo" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 5px;">
+        GitHub Repository
+    </a>
+</div>
+</body>
+</html>
